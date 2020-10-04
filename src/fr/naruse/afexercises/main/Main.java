@@ -1,5 +1,7 @@
 package fr.naruse.afexercises.main;
 
+import fr.naruse.afexercises.updater.Updater;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
@@ -24,6 +26,11 @@ public class Main {
     public static void main(String[] args){
         loadImages();
         MAIN_FRAME = new MainFrame();
+        if(args.length == 0 || !args[0].equalsIgnoreCase("skipUpdate")){
+            Updater.tryUpdate();
+        }else{
+            System.out.println("Update skipped.");
+        }
     }
 
     private static void loadImages() {

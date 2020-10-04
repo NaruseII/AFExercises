@@ -32,7 +32,7 @@ public class InfoFrame extends JFrame implements ActionListener {
         setMainLabel("Ce programme n'est en aucun cas relié de près ou de loin à l'Armée de l'Air. " +
                 "Il a été créé par un passionné pour des passionnés." +
                 " \nUn tel programme ne peut substituer les véritables aides d'apprentissage fournies\npar un conseiller proféssionnel de l'Armée." +
-                " L'usage de ce programme doit rester personnel bien que gratuit. Le code source de celui-ci est disponible à cette addresse: \n<URL>https://github.com/NaruseII</URL>");
+                " L'usage de ce programme doit rester personnel bien que gratuit. Le code source de celui-ci est disponible à cette addresse: \n<URL>https://github.com/NaruseII/AFExercises</URL>");
     }
 
     @Override
