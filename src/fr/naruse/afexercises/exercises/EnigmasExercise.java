@@ -8,10 +8,6 @@ import javax.swing.*;
 
 public class EnigmasExercise extends AbstractExercise {
 
-    private int enigmasCount = 4;
-    private int grade = 0;
-    private String mistake = "";
-
     private Enigma currentEnigma;
 
     public EnigmasExercise() {
@@ -22,21 +18,21 @@ public class EnigmasExercise extends AbstractExercise {
 
     @Override
     protected void nextQuestion() {
-        if(enigmasCount == 0){
+        if(count == 0){
             schedule(-1);
-            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/4 énigmes. "+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
+            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/"+totalCount+" énigmes. "+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
             setVisible(false);
             Main.MAIN_FRAME.setVisible(true);
             return;
         }
-        enigmasCount--;
+        count--;
 
         currentEnigma = Enigma.getRandomEnigma(EnigmaType.MATH);
 
         setMainLabel(currentEnigma.getStatement());
 
         schedule(60*3);
-        setHeadLabelText("Tu as 3m entre chaque énigmes. N'utilises pas ta calculette ! ("+(enigmasCount+1)+"/4 restantes)");
+        setHeadLabelText("Tu as 3m entre chaque énigmes. N'utilises pas ta calculette ! ("+(count+1)+"/"+totalCount+" restantes)");
     }
 
     @Override
@@ -62,7 +58,7 @@ public class EnigmasExercise extends AbstractExercise {
         if(mainTextField.getText().toUpperCase().equalsIgnoreCase(s)){
             grade++;
         }else{
-            mistake += "\n------------------------------------\n"+(enigmasCount+1)+" : \n" +
+            mistake += "\n------------------------------------\n"+(count+1)+" : \n" +
                     "\tVotre réponse: "+mainTextField.getText()+"\n" +
                     "\tRéponse attendue: "+s;
         }

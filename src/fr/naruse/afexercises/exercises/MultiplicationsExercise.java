@@ -9,10 +9,6 @@ public class MultiplicationsExercise extends AbstractExercise {
 
     private final DecimalFormat decimalFormat = new DecimalFormat("0.#");
 
-    private int multiplicationsCount = 1;
-    private int grade = 0;
-    private String mistake = "";
-
     private double currentMultiplier;
     private double currentMultiplied;
     private double currentAnswer;
@@ -25,14 +21,14 @@ public class MultiplicationsExercise extends AbstractExercise {
 
     @Override
     protected void nextQuestion() {
-        if(multiplicationsCount == 0){
+        if(count == 0){
             schedule(-1);
-            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/4 multiplications. "+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
+            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/"+totalCount+" multiplications. "+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
             setVisible(false);
             Main.MAIN_FRAME.setVisible(true);
             return;
         }
-        multiplicationsCount--;
+        count--;
 
         currentMultiplied = random.nextInt(500);
         currentMultiplier = random.nextInt(7);
@@ -44,7 +40,7 @@ public class MultiplicationsExercise extends AbstractExercise {
         currentAnswer = currentMultiplied*currentMultiplier;
 
         schedule(90);
-        setHeadLabelText("Tu as 1m30 entre chaque multiplication. N'utilises pas ta calculette ! ("+(multiplicationsCount+1)+"/4 restantes)");
+        setHeadLabelText("Tu as 1m30 entre chaque multiplication. N'utilises pas ta calculette ! ("+(currentAnswer+1)+"/"+totalCount+" restantes)");
     }
 
     @Override

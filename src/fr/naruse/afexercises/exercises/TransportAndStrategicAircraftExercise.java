@@ -11,7 +11,6 @@ public class TransportAndStrategicAircraftExercise extends AbstractMCQExercise {
 
     public TransportAndStrategicAircraftExercise() {
         super("Armée de l'Air - Avions de Transport & Stratégiques");
-        nextQuestion();
     }
 
     @Override

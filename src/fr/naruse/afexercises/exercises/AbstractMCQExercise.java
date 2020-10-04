@@ -6,23 +6,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public abstract class AbstractMCQExercise extends AbstractExercise {
-    protected int grade = 0;
-    protected String mistake = "";
     protected List<MCQ> mcqList;
     private Iterator<MCQ> iterator;
     protected MCQ currentMCQ;
-    protected int count = 4, totalCount = 4;
+
+    private int schedule;
+
+    public AbstractMCQExercise(String title, int schedule, int questionCount) {
+        super(title, 1024, 720);
+        this.count = questionCount;
+        this.totalCount = questionCount;
+        this.schedule = schedule;
+        this.mainTextField.setVisible(false);
+        this.mcqList = buildMCQs();
+        Collections.shuffle(mcqList);
+        this.nextQuestion();
+    }
 
     public AbstractMCQExercise(String title) {
-        super(title, 1024, 720);
-        mainTextField.setVisible(false);
-        mcqList = buildMCQs();
-        Collections.shuffle(mcqList);
+        this(title, 15, 4);
     }
 
     public boolean nextMCQ(){
@@ -52,8 +60,8 @@ public abstract class AbstractMCQExercise extends AbstractExercise {
         }
         count--;
 
-        schedule(15);
-        setHeadLabelText("Tu as 15s entre chaque questions. ("+(count+1)+"/"+totalCount+" restantes)");
+        schedule(schedule);
+        setHeadLabelText("Tu as "+schedule+"s entre chaque questions. ("+(count+1)+"/"+totalCount+" restantes)");
         if(!nextMCQ()){
             count = 0;
             nextQuestion();
@@ -83,6 +91,29 @@ public abstract class AbstractMCQExercise extends AbstractExercise {
             this.answers = new String[]{answer1, answer2, answer3, answer4};
             this.buttons = new JButton[]{new JButton(answer1), new JButton(answer2), new JButton(answer3), new JButton(answer4)};
             this.goodAnswer = goodAnswer;
+        }
+
+        public MCQ(String question, String answer, String[] randomAnswers) {
+            this.question = question;
+            this.answers = new String[4];
+            List<String> list = new ArrayList<>();
+            list.add(answer);
+            while (list.size() < 4){
+                String s = randomAnswers[random.nextInt(randomAnswers.length)];
+                if(!answer.equals(s)){
+                    list.add(s);
+                }
+            }
+            Collections.shuffle(list);
+            int goodAnswerId = 0;
+            for (int i = 0; i < list.size(); i++) {
+                answers[i] = list.get(i);
+                if(list.get(i).equals(answer)){
+                    goodAnswerId = i;
+                }
+            }
+            this.buttons = new JButton[]{new JButton(answers[0]), new JButton(answers[1]), new JButton(answers[2]), new JButton(answers[3])};
+            this.goodAnswer = QuestionChoiceType.byId(goodAnswerId);
         }
 
         public void disable(){
@@ -146,6 +177,16 @@ public abstract class AbstractMCQExercise extends AbstractExercise {
 
         public int getId() {
             return id;
+        }
+
+        public static QuestionChoiceType byId(int id){
+            switch (id){
+                case 0: return ONE;
+                case 1: return TWO;
+                case 2: return THREE;
+                case 3: return FOUR;
+            }
+            return null;
         }
     }
 }

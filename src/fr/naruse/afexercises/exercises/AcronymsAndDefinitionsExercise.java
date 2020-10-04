@@ -21,21 +21,20 @@ public class AcronymsAndDefinitionsExercise extends AbstractExercise {
             "Outil d'Apprentissage Basique", "Centre d'Expertise Aérienne Militaire", "Système de Croisière conventionnel Autonome Longue Portée",
             "Air-Sol Moyenne Portée Amélioré"};
 
-    private int questionCount = 8;
-    private int grade = 0;
     private int currentQuestion = 0;
-
-    private String mistake = "";
 
     private Iterator<Integer> questionsIterator;
 
     public AcronymsAndDefinitionsExercise() {
         super("Armée de l'Air - Sigles et Définitions", 800, 400);
 
+        count = 8;
+        totalCount = 8;
+
         mainLabel.setText("Calcul des questions en cours...");
 
         List<Integer> questionsId = new ArrayList<>();
-        for (int i = 0; i < questionCount; i++) {
+        for (int i = 0; i < count; i++) {
             int id = random.nextInt(acronyms.length);
             if(questionsId.contains(id)){
                 i--;
@@ -51,19 +50,19 @@ public class AcronymsAndDefinitionsExercise extends AbstractExercise {
 
     @Override
     protected void nextQuestion() {
-        if(questionCount == 0 || !questionsIterator.hasNext()){
+        if(count == 0 || !questionsIterator.hasNext()){
             schedule(-1);
-            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/8 questions."+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
+            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/"+totalCount+" questions."+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
             setVisible(false);
             Main.MAIN_FRAME.setVisible(true);
             return;
         }
-        questionCount--;
+        count--;
         int id = questionsIterator.next();
         currentQuestion = id;
 
         mainLabel.setText(acronyms[id]+":");
-        setHeadLabelText("Questions restantes: "+(questionCount+1));
+        setHeadLabelText("Questions restantes: "+(count+1));
         schedule(30);
     }
 

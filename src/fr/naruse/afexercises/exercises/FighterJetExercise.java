@@ -11,7 +11,6 @@ public class FighterJetExercise extends AbstractMCQExercise {
 
     public FighterJetExercise() {
         super("Armée de l'Air - Avions de Chasse");
-        nextQuestion();
     }
 
     @Override

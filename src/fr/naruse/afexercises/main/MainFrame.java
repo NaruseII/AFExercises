@@ -15,6 +15,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton enigmas = new JButton("Enigmes");
     private final JButton transportAircraft = new JButton("Avions de Transport & Stratégiques");
     private final JButton fighterJet = new JButton("Avions de Chasse");
+    private final JButton grades = new JButton("Grades");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
@@ -43,6 +44,9 @@ public class MainFrame extends JFrame implements ActionListener {
         fighterJet.setBounds(500-200-25, 10, 200, 25);
         fighterJet.addActionListener(this);
         add(fighterJet);
+        grades.setBounds(500-200-25, 10+(25+10)*1, 200, 25);
+        grades.addActionListener(this);
+        add(grades);
 
         info.setBounds(500-150-20, 250-50, 150, 15);
         info.addActionListener(this);
@@ -53,6 +57,10 @@ public class MainFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(Main.A400M == null){
+            JOptionPane.showMessageDialog(this, "Le programme est en train de chager ses resousrces ! Patientez quelques secondes...");
+            return;
+        }
         setVisible(false);
         if(e.getSource() == info){
             new InfoFrame();
@@ -68,6 +76,8 @@ public class MainFrame extends JFrame implements ActionListener {
            new TransportAndStrategicAircraftExercise();
         }else if(e.getSource() == fighterJet){
             new FighterJetExercise();
+        }else if(e.getSource() == grades){
+            new GradesExercise();
         }
     }
 }

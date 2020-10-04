@@ -2,10 +2,7 @@ package fr.naruse.afexercises.main;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +15,13 @@ public class InfoFrame extends JFrame implements ActionListener {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
         setSize(500, 250);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e){
+                Main.MAIN_FRAME.setVisible(true);
+            }
+        });
         setIconImage(Main.LOGO);
         setLayout(null);
         setResizable(false);

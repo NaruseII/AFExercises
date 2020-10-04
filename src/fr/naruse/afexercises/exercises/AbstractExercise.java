@@ -5,6 +5,8 @@ import fr.naruse.afexercises.main.Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.*;
 import java.util.List;
 import java.util.Timer;
@@ -19,11 +21,21 @@ public abstract class AbstractExercise extends JFrame {
     protected final JLabel mainLabel = new JLabel();
     protected final JTextField mainTextField = new JTextField();
 
+    protected int grade = 0;
+    protected String mistake = "";
+    protected int count = 4, totalCount = 4;
+
     public AbstractExercise(String title, int width, int height) {
         setTitle(title);
         setSize(width, height);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e){
+                Main.MAIN_FRAME.setVisible(true);
+            }
+        });
         setIconImage(Main.LOGO);
         setLayout(null);
         setResizable(false);
@@ -146,7 +158,7 @@ public abstract class AbstractExercise extends JFrame {
 
         public AbstractExercisePanel(int width, int height) {
             setLayout(null);
-            progressBar.setBounds(15, height-60, width-25-20, 15);
+            progressBar.setBounds(18, height-60, width-25-20, 15);
             progressBar.setBackground(new Color(88, 85, 85));
             progressBar.setVisible(true);
             add(progressBar);

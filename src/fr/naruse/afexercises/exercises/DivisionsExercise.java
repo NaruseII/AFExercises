@@ -9,10 +9,6 @@ public class DivisionsExercise extends AbstractExercise {
 
     private final DecimalFormat decimalFormat = new DecimalFormat("0.#");
 
-    private int divisionsCount = 4;
-    private int grade = 0;
-    private String mistake = "";
-
     private double currentDivider;
     private double currentDivided;
     private double currentAnswer;
@@ -25,14 +21,14 @@ public class DivisionsExercise extends AbstractExercise {
 
     @Override
     protected void nextQuestion() {
-        if(divisionsCount == 0){
+        if(count == 0){
             schedule(-1);
-            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/4 divisions."+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
+            JOptionPane.showMessageDialog(this, "Exercice terminé ! Vous avez réussi "+grade+"/"+totalCount+" divisions."+(mistake.equals("") ? "" : "Voici vos erreurs:\n"+mistake.replace("\n\n","")));
             setVisible(false);
             Main.MAIN_FRAME.setVisible(true);
             return;
         }
-        divisionsCount--;
+        count--;
 
         currentDivided = random.nextInt(500);
         currentDivider = random.nextInt(8)+1;
@@ -44,7 +40,7 @@ public class DivisionsExercise extends AbstractExercise {
         currentAnswer = currentDivided/currentDivider;
 
         schedule(90);
-        setHeadLabelText("Tu as 1m30 entre chaque divisions. N'utilises pas ta calculette ! ("+(divisionsCount+1)+"/4 restantes)");
+        setHeadLabelText("Tu as 1m30 entre chaque divisions. N'utilises pas ta calculette ! ("+(count+1)+"/"+totalCount+" restantes)");
     }
 
     @Override
