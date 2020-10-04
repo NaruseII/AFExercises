@@ -38,11 +38,13 @@ public class Updater {
             InputStreamReader inputStreamReader = new InputStreamReader(Main.class.getClassLoader().getResourceAsStream("resources/version.txt"));
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String currentVersion = bufferedReader.readLine();
-            System.out.println(currentVersion);
 
             URL url = new URL("https://raw.githubusercontent.com/NaruseII/AFExercises/master/src/resources/version.txt");
             Scanner scanner = new Scanner(url.openStream());
             String onlineVersion = scanner.nextLine();
+
+            System.out.println("[Updater] Local version: "+currentVersion);
+            System.out.println("[Updater] Online version: "+onlineVersion);
 
             if(currentVersion.equals(onlineVersion)){
                 return false;
