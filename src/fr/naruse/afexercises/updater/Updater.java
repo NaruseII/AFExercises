@@ -19,7 +19,7 @@ public class Updater {
                 System.out.println("[Updater] Launching update...");
                 File runningJar = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI());
                 System.out.println("[Updater] Jar found : "+runningJar.getAbsolutePath());
-                URL url = new URL("https://github.com/NaruseII/AFExercises/blob/master/Exercices%20Arm%C3%A9e%20de%20l'Air%20-%20Tests%20EOPN.jar?raw=true");
+                URL url = new URL("https://github.com/NaruseII/AFExercises/blob/master/out/artifacts/AFExercices_jar/Exercices%20Arm%C3%A9e%20de%20l'Air%20-%20Tests%20EOPN.jar?raw=true");
                 if(needToUpdate()){
                     downloadFile(url, runningJar, true);
                     JOptionPane.showMessageDialog(Main.MAIN_FRAME, "Une mise a été téléchargée. Veuillez relancer le programme.\n(Celui-ci va se fermer automatiquement)");
