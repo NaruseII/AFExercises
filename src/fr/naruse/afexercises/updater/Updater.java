@@ -40,7 +40,7 @@ public class Updater {
             String currentVersion = bufferedReader.readLine();
             System.out.println(currentVersion);
 
-            URL url = new URL("https://github.com/NaruseII/AFExercises/blob/master/src/resources/version.txt?raw=true");
+            URL url = new URL("https://raw.githubusercontent.com/NaruseII/AFExercises/master/src/resources/version.txt");
             Scanner scanner = new Scanner(url.openStream());
             String onlineVersion = scanner.nextLine();
 
