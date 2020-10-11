@@ -40,7 +40,7 @@ public class MultiplicationsExercise extends AbstractExercise {
         currentAnswer = currentMultiplied*currentMultiplier;
 
         schedule(90);
-        setHeadLabelText("Tu as 1m30 entre chaque multiplication. N'utilises pas ta calculette ! ("+(currentAnswer+1)+"/"+totalCount+" restantes)");
+        setHeadLabelText("Tu as 1m30 entre chaque multiplication. N'utilises pas ta calculette ! ("+(count+1)+"/"+totalCount+" restantes)");
     }
 
     @Override
