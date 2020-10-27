@@ -18,6 +18,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton grades = new JButton("Grades");
     private final JButton mentalArithmetic = new JButton("Calcul Mental");
     private final JButton advancedMentalArithmetic = new JButton("Calcul Mental Avancé");
+    private final JButton mentalMultiplications = new JButton("Multiplications Mentales");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
@@ -55,6 +56,9 @@ public class MainFrame extends JFrame implements ActionListener {
         advancedMentalArithmetic.setBounds(500-200-25, 10+(25+10)*3, 200, 25);
         advancedMentalArithmetic.addActionListener(this);
         add(advancedMentalArithmetic);
+        mentalMultiplications.setBounds(500-200-25, 10+(25+10)*4, 200, 25);
+        mentalMultiplications.addActionListener(this);
+        add(mentalMultiplications);
 
         info.setBounds(500-150-20, 250-50, 150, 15);
         info.addActionListener(this);
@@ -90,6 +94,8 @@ public class MainFrame extends JFrame implements ActionListener {
             new MentalArithmeticExercise(false);
         }else if(e.getSource() == advancedMentalArithmetic){
             new MentalArithmeticExercise(true);
+        }else if(e.getSource() == mentalMultiplications){
+            new MentalMultiplicationExercise();
         }
     }
 }

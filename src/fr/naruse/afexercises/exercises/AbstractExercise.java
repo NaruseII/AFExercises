@@ -25,6 +25,8 @@ public abstract class AbstractExercise extends JFrame {
     protected String mistake = "";
     protected int count = 4, totalCount = 4;
 
+    private boolean isShutdown = false;
+
     public AbstractExercise(String title, int width, int height) {
         setTitle(title);
         setSize(width, height);
@@ -34,6 +36,7 @@ public abstract class AbstractExercise extends JFrame {
             @Override
             public void windowClosing(WindowEvent e){
                 Main.MAIN_FRAME.setVisible(true);
+                isShutdown = true;
             }
         });
         setIconImage(Main.LOGO);
@@ -67,6 +70,9 @@ public abstract class AbstractExercise extends JFrame {
     private int millis = 0;
     private TimerTask taskInUse;
     protected void schedule(int delay){
+        if(isShutdown){
+            return;
+        }
         if(taskInUse != null){
             taskInUse.cancel();
         }
