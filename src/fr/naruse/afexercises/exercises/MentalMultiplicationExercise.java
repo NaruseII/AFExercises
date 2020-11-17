@@ -38,7 +38,7 @@ public class MentalMultiplicationExercise extends AbstractExercise {
         currentAnswer = currentMultiplied * currentMultiplier;
 
         schedule(10);
-        setHeadLabelText("Tu as 1m30 entre chaque multiplication. N'utilises pas ta calculette ! (" + (count + 1) + "/" + totalCount + " restantes)");
+        setHeadLabelText("Tu as 10s entre chaque multiplication. N'utilises pas ta calculette ! (" + (count + 1) + "/" + totalCount + " restantes)");
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.List;
 public class AcronymsAndDefinitionsExercise extends AbstractExercise {
 
     private final String[] acronyms = new String[] {"FMI", "PIM", "PAMAS G1", "FAMAS", "EIVV", "EVAA", "FMGO", "EPAA", "CFAMI", "EISPN", "EIV",
-            "ETR", "CIET", "CSR", "COEA", "BITD", "ETO", "OAB", "CLEAM", "SCALP", "ASMP-A"};
+            "ETR", "CIET", "CSR", "COEA", "BITD", "ETO", "OAB", "CEAM", "SCALP", "ASMP-A"};
     private final String[] definitions = new String[] {"Formation Militaire Initiale", "Période d'Incorporation Militaire",
             "Pistolet Automatique 9mm de la Manufacture d'Arme de Saint Etienne", "Fusil d'Assaut de la Manufacture d'Arme de Saint Etienne",
             "Escadron d'Instruction du Vol à Voile", "Ecole de Voltige de l'Armée de l'Air", "Formation Militaire Générale de l'Officier",
@@ -28,8 +28,8 @@ public class AcronymsAndDefinitionsExercise extends AbstractExercise {
     public AcronymsAndDefinitionsExercise() {
         super("Armée de l'Air - Sigles et Définitions", 800, 400);
 
-        count = 8;
-        totalCount = 8;
+        count = 21;
+        totalCount = count;
 
         mainLabel.setText("Calcul des questions en cours...");
 
@@ -73,7 +73,7 @@ public class AcronymsAndDefinitionsExercise extends AbstractExercise {
 
     @Override
     protected void checkAnswer() {
-        if(mainTextField.getText().toUpperCase().equalsIgnoreCase(definitions[currentQuestion].toUpperCase())){
+        if(mainTextField.getText().replace("é", "e").toUpperCase().equalsIgnoreCase(definitions[currentQuestion].replace("é", "e").toUpperCase())){
             grade++;
         }else{
             mistake += "\n------------------------------------\n"+acronyms[currentQuestion]+" : \n" +

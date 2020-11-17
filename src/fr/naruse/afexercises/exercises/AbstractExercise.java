@@ -160,6 +160,10 @@ public abstract class AbstractExercise extends JFrame {
         mainLabel.setVisible(false);
     }
 
+    public int getAddedY(){
+        return 0;
+    }
+
     private class AbstractExercisePanel extends JPanel {
 
         public AbstractExercisePanel(int width, int height) {
@@ -179,7 +183,7 @@ public abstract class AbstractExercise extends JFrame {
             mainLabel.setFont(mainLabel.getFont().deriveFont(20f));
             add(mainLabel);
 
-            mainTextField.setBounds(width/2-200, height/2+80, 400, 25);
+            mainTextField.setBounds(width/2-200, height/2+80+getAddedY(), 400, 25);
             mainTextField.setFont(mainTextField.getFont().deriveFont(17f));
             mainTextField.setVisible(true);
             add(mainTextField);

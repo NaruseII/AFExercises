@@ -19,10 +19,12 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton mentalArithmetic = new JButton("Calcul Mental");
     private final JButton advancedMentalArithmetic = new JButton("Calcul Mental Avancé");
     private final JButton mentalMultiplications = new JButton("Multiplications Mentales");
+    private final JButton grades2 = new JButton("Noms des Grades");
+    private final JButton grades3 = new JButton("Grades Ordre");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
-        setSize(500, 250);
+        setSize(500, 280);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Main.LOGO);
@@ -44,6 +46,11 @@ public class MainFrame extends JFrame implements ActionListener {
         transportAircraft.setBounds(25, 10+(25+10)*4, 200, 25);
         transportAircraft.addActionListener(this);
         add(transportAircraft);
+        grades2.setBounds(25, 10+(25+10)*5, 200, 25);
+        grades2.addActionListener(this);
+        add(grades2);
+
+
         fighterJet.setBounds(500-200-25, 10, 200, 25);
         fighterJet.addActionListener(this);
         add(fighterJet);
@@ -59,8 +66,11 @@ public class MainFrame extends JFrame implements ActionListener {
         mentalMultiplications.setBounds(500-200-25, 10+(25+10)*4, 200, 25);
         mentalMultiplications.addActionListener(this);
         add(mentalMultiplications);
+        grades3.setBounds(500-200-25, 10+(25+10)*5, 200, 25);
+        grades3.addActionListener(this);
+        add(grades3);
 
-        info.setBounds(500-150-20, 250-50, 150, 15);
+        info.setBounds(500-150-20, 280-50, 150, 15);
         info.addActionListener(this);
         add(info);
 
@@ -96,6 +106,10 @@ public class MainFrame extends JFrame implements ActionListener {
             new MentalArithmeticExercise(true);
         }else if(e.getSource() == mentalMultiplications){
             new MentalMultiplicationExercise();
+        }else if(e.getSource() == grades2){
+            new Grades2Exercise();
+        }else if(e.getSource() == grades3){
+            new Grades3Exercise();
         }
     }
 }
