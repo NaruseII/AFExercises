@@ -80,7 +80,7 @@ public class Updater extends JFrame {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
                 length += 1024;
                 System.out.println("[Updater] "+byteToMB(length)+" MB / "+fileSize+" MB");
-                updater.updateProgressBar((int) (Double.parseDouble(byteToMB(length).replace(",", "."))*1000000), (int) (Double.parseDouble(fileSize.replace(",", "."))*1000000));
+                updater.updateProgressBar((int) (Double.parseDouble(byteToMB(length).replace(",", ""))*1000000), (int) (Double.parseDouble(fileSize.replace(",", ""))*1000000));
                 updater.setMainLabel(byteToMB(length)+" MB / "+fileSize+" MB");
             }
             System.out.println("[Updater] Update ended.");
@@ -97,9 +97,6 @@ public class Updater extends JFrame {
     private static final DecimalFormat df = new DecimalFormat("0.####");
     private static String byteToMB(long bytes){
         String result = df.format(bytes*0.000001);
-        if(!result.contains(",")){
-            result += ",00";
-        }
         return result;
     }
 
