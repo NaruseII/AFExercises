@@ -17,7 +17,7 @@ public class GradesExercise extends AbstractMCQExercise {
             "Commandant", "Lieutenant-Colonel", "Colonel", // Officiers supérieurs
             "Général de Brigade Aérienne", "Général de Division Aérienne", "Général de Corps Aérien", "Général d'Armée Aérienne"}; // Officiers généraux
     public GradesExercise() {
-        super("Armée de l'Air - Grades | QCM", 20, 8);
+        super("Armée de l'Air - Grades | QCM", 20, GRADES_NAME.length);
     }
 
     @Override

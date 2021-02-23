@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.Instant;
 import java.util.*;
 import java.util.List;
 import java.util.Timer;
@@ -29,6 +33,11 @@ public abstract class AbstractExercise extends JFrame {
 
     public AbstractExercise(String title, int width, int height) {
         setTitle(title);
+        if(width == -1){
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            width = screenSize.width;
+            height = screenSize.height;
+        }
         setSize(width, height);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -64,6 +73,24 @@ public abstract class AbstractExercise extends JFrame {
     protected abstract void enterPressedEvent();
 
     protected abstract void checkAnswer();
+
+    protected void writeErrors(){
+        if(mistake.replace("\n\n", "").equalsIgnoreCase("")){
+            return;
+        }
+        Date date = Date.from(Instant.now());
+        File ff = new File("logs");
+        File f = new File(ff, "["+getClass().getSimpleName()+"] day "+date.getDate()+" "+date.getHours()+"h"+date.getMinutes()+".txt");
+        try {
+            ff.mkdir();
+            f.createNewFile();
+            FileWriter wirter = new FileWriter(f);
+            wirter.write(mistake.replace("\n\n", ""));
+            wirter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     protected void customPaintComponent(Graphics g){ }
 
@@ -178,12 +205,12 @@ public abstract class AbstractExercise extends JFrame {
             add(headLabel);
 
             mainLabel.setText("...");
-            mainLabel.setBounds(120, height/2-40, 500, 25);
+            mainLabel.setBounds(120, height/2-40, 900, 25);
             mainLabel.setVisible(true);
             mainLabel.setFont(mainLabel.getFont().deriveFont(20f));
             add(mainLabel);
 
-            mainTextField.setBounds(width/2-200, height/2+80+getAddedY(), 400, 25);
+            mainTextField.setBounds(width/2-200, getAddedY() == -1 ? height-100 : height/2+80+getAddedY(), 400, 25);
             mainTextField.setFont(mainTextField.getFont().deriveFont(17f));
             mainTextField.setVisible(true);
             add(mainTextField);
