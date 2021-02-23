@@ -93,7 +93,7 @@ public class MainFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(Main.PLANES[0] == null){
-            JOptionPane.showMessageDialog(this, "Le programme est en train de chager ses resousrces ! Patientez quelques secondes...");
+            JOptionPane.showMessageDialog(this, "Le programme est en train de charger ses ressources ! Patientez quelques secondes...");
             return;
         }
         setVisible(false);

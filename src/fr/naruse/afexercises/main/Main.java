@@ -33,22 +33,19 @@ public class Main {
         }catch (Exception e){
             e.printStackTrace();
         }
-        Executors.newSingleThreadExecutor().submit(() -> {
-            try {
-                GRADES = new Image[GradesExercise.GRADES_NAME.length];
-                for (int i = 0; i < GradesExercise.GRADES_NAME.length; i++) {
-                    String grade = GradesExercise.GRADES_NAME[i];
-                    GRADES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/grades/"+grade.toLowerCase().replace(" ", "-")+".png"));
-                }
-                PLANES = new Image[PlanesExercise.PLANES.length];
-                for (int i = 0; i < PlanesExercise.PLANES.length; i++) {
-                    String grade = PlanesExercise.PLANES[i];
-                    PLANES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/planes/"+grade.toLowerCase().replace(" ", "")+".jpg"));
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            GRADES = new Image[GradesExercise.GRADES_NAME.length];
+            for (int i = 0; i < GradesExercise.GRADES_NAME.length; i++) {
+                String grade = GradesExercise.GRADES_NAME[i];
+                GRADES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/grades/"+grade.toLowerCase().replace(" ", "-")+".png"));
             }
-        });
-
+            PLANES = new Image[PlanesExercise.PLANES.length];
+            for (int i = 0; i < PlanesExercise.PLANES.length; i++) {
+                String grade = PlanesExercise.PLANES[i];
+                PLANES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/planes/"+grade.replace(" ", "")+".jpg"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
