@@ -12,14 +12,18 @@ public class OpexExercise extends AbstractExercise {
             "2013 -> 2016",
             "1er aout 2014 -> en cours",
             "20 septembre 2014 -> en cours",
-            "Nuit du 13 au 14 avril 2018"
+            "Nuit du 13 au 14 avril 2018",
+            "19 mars 2011 -> 31 octobre 2011",
+            "1971 -> 1971"
     };
     private String[] definitions = new String[]{
             "Opération Serval soutient mali rebelles islamistes",
             "Operation Sangaris désarm seleka anti balaka république centreafricaine",
             "Opération Barkhane menace terroriste sahel formation armée locale",
             "Opération Chammal Irak Syrie etat islamique",
-            "Opération Hamilton contre Bachar el assad contre attaque chimique"
+            "Opération Hamilton contre Bachar el assad contre attaque chimique",
+            "Opération Harmattan intervention libye guerre civile",
+            "Opération Omega aide humanitaire génocide bangladesh"
     };
 
     private int currentQuestion = 0;

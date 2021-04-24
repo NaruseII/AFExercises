@@ -164,7 +164,7 @@ public abstract class AbstractExercise extends JFrame {
         StringBuilder builder = new StringBuilder();
         for (char c : statement.toCharArray()) {
             builder.append(c);
-            if(i >= 60 && c == ' '){
+            if(i >= 50 && c == ' '){
                 i = 0;
                 list.add(builder.toString());
                 builder = new StringBuilder();
@@ -177,7 +177,7 @@ public abstract class AbstractExercise extends JFrame {
         for (String s : list) {
             JLabel jLabel = new JLabel();
             jLabel.setText(s);
-            jLabel.setBounds(getWidth()/2-headLabel.getGraphics().getFontMetrics().stringWidth(s)/2, getHeight()/2-5-(23*heightPlus)+downHeight, 800, 25);
+            jLabel.setBounds(getWidth()/2-headLabel.getGraphics().getFontMetrics().stringWidth(s)/2, getHeight()/2-5-(23*heightPlus)+downHeight, getWidth(), 25);
             jLabel.setVisible(true);
             jLabel.setFont(jLabel.getFont().deriveFont(20f));
             getContentPane().add(jLabel);

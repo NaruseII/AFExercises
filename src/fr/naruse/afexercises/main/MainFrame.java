@@ -22,6 +22,8 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton dates2 = new JButton("Dates (Evènement -> Date)");
     private final JButton opex = new JButton("Opex");
     private final JButton planes = new JButton("Aéronefs");
+    private final JButton specil = new JButton("SPECIL");
+    private final JButton culture = new JButton("Culture");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
@@ -56,6 +58,12 @@ public class MainFrame extends JFrame implements ActionListener {
         opex.setBounds(25, 10+(25+10)*5, 200, 25);
         opex.addActionListener(this);
         add(opex);
+        specil.setBounds(25, 10+(25+10)*6, 200, 25);
+        specil.addActionListener(this);
+        add(specil);
+        culture.setBounds(25, 10+(25+10)*7, 200, 25);
+        culture.addActionListener(this);
+        add(culture);
 
 
         /*fighterJet.setBounds(500-200-25, 10, 200, 25);
@@ -125,6 +133,10 @@ public class MainFrame extends JFrame implements ActionListener {
             new OpexExercise();
         }else if(e.getSource() == planes){
             new PlanesExercise();
+        }else if(e.getSource() == specil){
+            new SPECILExercise();
+        }else if(e.getSource() == culture){
+            new CultureExercise();
         }
     }
 }
