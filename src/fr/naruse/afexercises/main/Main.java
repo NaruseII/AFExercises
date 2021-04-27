@@ -18,7 +18,9 @@ public class Main {
     public static Image[] PLANES;
 
     public static void main(String[] args){
+        System.out.println("Loading resources...");
         loadImages();
+        System.out.println("Loaded "+(1+GRADES.length+PLANES.length)+" resources");
         MAIN_FRAME = new MainFrame();
         if(args.length == 0 || !args[0].equalsIgnoreCase("skipUpdate")){
             Updater.tryUpdate();
@@ -29,6 +31,7 @@ public class Main {
 
     private static void loadImages() {
         try{
+            System.out.println("  Loading 'logo_armee_air_espace.png'");
             LOGO = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/logo_armee_air_espace.png"));
         }catch (Exception e){
             e.printStackTrace();
@@ -37,12 +40,14 @@ public class Main {
             GRADES = new Image[GradesExercise.GRADES_NAME.length];
             for (int i = 0; i < GradesExercise.GRADES_NAME.length; i++) {
                 String grade = GradesExercise.GRADES_NAME[i];
+                System.out.println("  Loading '"+grade.toLowerCase().replace(" ", "-")+".png'");
                 GRADES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/grades/"+grade.toLowerCase().replace(" ", "-")+".png"));
             }
             PLANES = new Image[PlanesExercise.PLANES.length];
             for (int i = 0; i < PlanesExercise.PLANES.length; i++) {
                 String grade = PlanesExercise.PLANES[i];
-                PLANES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/planes/"+grade.replace(" ", "")+".jpg"));
+                System.out.println("  Loading '"+grade.toLowerCase().replace(" ", "-")+".jpg'");
+                PLANES[i] = ImageIO.read(Main.class.getClassLoader().getResourceAsStream("resources/planes/"+grade.replace(" ", "-")+".jpg"));
             }
         } catch (IOException e) {
             e.printStackTrace();

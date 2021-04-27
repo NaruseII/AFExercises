@@ -13,7 +13,7 @@ public class InfoFrame extends JFrame implements ActionListener {
 
     public InfoFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
-        setSize(500, 250);
+        setSize(500, 260);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         addWindowListener(new WindowAdapter(){

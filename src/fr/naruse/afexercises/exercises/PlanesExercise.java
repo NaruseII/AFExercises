@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PlanesExercise extends AbstractExercise {
     private String currentAnswer;
@@ -13,10 +14,18 @@ public class PlanesExercise extends AbstractExercise {
     private List<String> list = new ArrayList<>();
     private Map<String, Integer> map = new HashMap<>();
 
-    public static final String[] PLANES = new String[]{
+    /*public static final String[] PLANES = new String[]{
             "MIG-29", "MIG-31", "MIG-35", "SU-27", "SU-30", "SU-35", // Russia
             "a400m", "c135", "casa235", "hercules", "mirage 2000", "rafale", "sdca", "tbm", "transall"//FRANCE
-            };
+            };*/
+    public static final String[] PLANES = new String[]{
+            "f-22", "f-15", "f-16", "f-18", // USA
+            "MIG-31", "SU-27", "SU-30", "SU-33", "SU-35", "MIG-35",// Russia
+            "mirage 2000", "rafale", //FRANCE
+            "JAS-39-Gripen", //SUEDE
+            "eurofighter typhoon", //OTHER
+            "Jh-7", "j-11", "j-10", "j-15" //CHINE
+    };
 
     public PlanesExercise() {
         super("Armée de l'Air - Aéronefs | Noms", -1, -1);
@@ -58,9 +67,17 @@ public class PlanesExercise extends AbstractExercise {
     protected void customPaintComponent(Graphics g) {
         super.customPaintComponent(g);
         if(currentImage != null){
-            int width = currentImage.getWidth(null);
-            int height = currentImage.getHeight(null);
-            g.drawImage(currentImage, getWidth()/2-width/2, getHeight()/2-height/2, width, height, null);
+            AtomicInteger width = new AtomicInteger(currentImage.getWidth(null));
+            AtomicInteger height = new AtomicInteger(currentImage.getHeight(null));
+            resize(width, height);
+            g.drawImage(currentImage, getWidth()/2-width.get()/2, getHeight()/2-height.get()/2, width.get(), height.get(), null);
+        }
+    }
+
+    private void resize(AtomicInteger width, AtomicInteger height){
+        while (width.get() > getWidth()-120 || height.get() > getHeight()-120){
+            width.set((int) (width.get()*0.95));
+            height.set((int) (height.get()*0.95));
         }
     }
 
