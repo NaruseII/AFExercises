@@ -29,7 +29,7 @@ public abstract class AbstractExercise extends JFrame {
     protected String mistake = "";
     protected int count = 4, totalCount = 4;
 
-    private boolean isShutdown = false;
+    protected boolean isShutdown = false;
 
     public AbstractExercise(String title, int width, int height) {
         setTitle(title);

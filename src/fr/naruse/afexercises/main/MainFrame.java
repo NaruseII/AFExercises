@@ -24,6 +24,7 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton planes = new JButton("Aéronefs");
     private final JButton specil = new JButton("SPECIL");
     private final JButton culture = new JButton("Culture");
+    private final JButton specilAudio = new JButton("SPECIL Audio");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
@@ -90,6 +91,9 @@ public class MainFrame extends JFrame implements ActionListener {
         planes.setBounds(500-200-25, 10+(25+10)*6, 200, 25);
         planes.addActionListener(this);
         add(planes);
+        specilAudio.setBounds(500-200-25, 10+(25+10)*7, 200, 25);
+        specilAudio.addActionListener(this);
+        add(specilAudio);
 
         info.setBounds(500-150-20, 280-50+25*3, 150, 15);
         info.addActionListener(this);
@@ -137,6 +141,8 @@ public class MainFrame extends JFrame implements ActionListener {
             new SPECILExercise();
         }else if(e.getSource() == culture){
             new CultureExercise();
+        }else if(e.getSource() == specilAudio){
+            new SPECILAudioExercise();
         }
     }
 }
