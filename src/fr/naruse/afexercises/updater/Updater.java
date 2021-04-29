@@ -76,13 +76,24 @@ public class Updater extends JFrame {
             long length = 0;
             long realFileSize = fileSize(host);
             String fileSize = byteToMB(realFileSize);
+
+            int i = 0;
+
+            updater.setMainLabel(byteToMB(length)+" MB / "+fileSize+" MB");
             while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
                 length += 1024;
                 System.out.println("[Updater] "+byteToMB(length)+" MB / "+fileSize+" MB");
                 updater.updateProgressBar((int) (Double.parseDouble(byteToMB(length).replace(",", ""))*1000000), (int) (Double.parseDouble(fileSize.replace(",", ""))*1000000));
-                updater.setMainLabel(byteToMB(length)+" MB / "+fileSize+" MB");
+
+                if(i >= 10){
+                    i = 0;
+                    updater.setMainLabel(byteToMB(length)+" MB / "+fileSize+" MB");
+                }else{
+                    i++;
+                }
             }
+            updater.setMainLabel(byteToMB(length)+" MB / "+fileSize+" MB");
             System.out.println("[Updater] Update ended.");
         } catch (IOException e) {
             if(log){
@@ -94,7 +105,7 @@ public class Updater extends JFrame {
         return true;
     }
 
-    private static final DecimalFormat df = new DecimalFormat("0.####");
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     private static String byteToMB(long bytes){
         String result = df.format(bytes*0.000001);
         return result;
@@ -196,7 +207,7 @@ public class Updater extends JFrame {
             progressBar.setVisible(true);
             add(progressBar);
 
-            mainLabel.setText("...");
+            mainLabel.setText("Chargement...");
             mainLabel.setBounds(120, height/2-40, 500, 25);
             mainLabel.setVisible(true);
             mainLabel.setFont(mainLabel.getFont().deriveFont(20f));
