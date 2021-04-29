@@ -25,10 +25,12 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton specil = new JButton("SPECIL");
     private final JButton culture = new JButton("Culture");
     private final JButton specilAudio = new JButton("SPECIL Audio");
+    private final JButton englishVoca = new JButton("Anglais Vocabulaire");
+    private final JButton englishVocaReversed = new JButton("Anglais Vocabulaire Inversé");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
-        setSize(500, 280+(25+15)*2+5);
+        setSize(500, 280+(25+15)*3+5);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Main.LOGO);
@@ -65,6 +67,9 @@ public class MainFrame extends JFrame implements ActionListener {
         culture.setBounds(25, 10+(25+10)*7, 200, 25);
         culture.addActionListener(this);
         add(culture);
+        englishVoca.setBounds(25, 10+(25+10)*8, 200, 25);
+        englishVoca.addActionListener(this);
+        add(englishVoca);
 
 
         /*fighterJet.setBounds(500-200-25, 10, 200, 25);
@@ -94,8 +99,11 @@ public class MainFrame extends JFrame implements ActionListener {
         specilAudio.setBounds(500-200-25, 10+(25+10)*7, 200, 25);
         specilAudio.addActionListener(this);
         add(specilAudio);
+        englishVocaReversed.setBounds(500-200-25, 10+(25+10)*8, 200, 25);
+        englishVocaReversed.addActionListener(this);
+        add(englishVocaReversed);
 
-        info.setBounds(500-150-20, 280-50+25*3, 150, 15);
+        info.setBounds(500-150-20, getHeight()-50, 150, 15);
         info.addActionListener(this);
         add(info);
 
@@ -143,6 +151,10 @@ public class MainFrame extends JFrame implements ActionListener {
             new CultureExercise();
         }else if(e.getSource() == specilAudio){
             new SPECILAudioExercise();
+        }else if(e.getSource() == englishVoca){
+            new EnglishVocabularyExercise(false);
+        }else if(e.getSource() == englishVocaReversed){
+            new EnglishVocabularyExercise(true);
         }
     }
 }
