@@ -6,9 +6,7 @@ import fr.naruse.afexercises.sound.SoundMerger;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -164,16 +162,13 @@ public class MainFrame extends JFrame implements ActionListener {
         }else if(e.getSource() == englishVocaReversed){
             new EnglishVocabularyExercise(true);
         }else if(e.getSource() == soundMerger){
-            ExecutorService executor = Executors.newSingleThreadExecutor();
-            executor.submit(() -> {
-                try {
-                    new SoundMerger();
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            });
-            executor.shutdown();
-            JOptionPane.showMessageDialog(this, "Création de 100 sons SECPIL en cours...");
+            JOptionPane.showMessageDialog(this, "La création de 100 sons SECPIL peut prendre quelques secondes. Cliquez sur 'Ok' pour lancer la création.");
+            try {
+                new SoundMerger();
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
         }
     }
 }
