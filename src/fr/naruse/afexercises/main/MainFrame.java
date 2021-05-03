@@ -1,10 +1,14 @@
 package fr.naruse.afexercises.main;
 
 import fr.naruse.afexercises.exercises.*;
+import fr.naruse.afexercises.sound.SoundMerger;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainFrame extends JFrame implements ActionListener {
 
@@ -22,15 +26,16 @@ public class MainFrame extends JFrame implements ActionListener {
     private final JButton dates2 = new JButton("Dates (Evènement -> Date)");
     private final JButton opex = new JButton("Opex");
     private final JButton planes = new JButton("Aéronefs");
-    private final JButton specil = new JButton("SPECIL");
+    private final JButton specil = new JButton("SECPIL");
     private final JButton culture = new JButton("Culture");
-    private final JButton specilAudio = new JButton("SPECIL Audio");
+    private final JButton specilAudio = new JButton("SECPIL Audio");
     private final JButton englishVoca = new JButton("Anglais Vocabulaire");
     private final JButton englishVocaReversed = new JButton("Anglais Vocabulaire Inversé");
+    private final JButton soundMerger = new JButton("SECPIL Sound Creator");
 
     public MainFrame() {
         setTitle("Exercices de préparation aux tests EOPN de l'Armée de L'air");
-        setSize(500, 280+(25+15)*3+5);
+        setSize(500, 280+(25+15)*3+15);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Main.LOGO);
@@ -70,6 +75,9 @@ public class MainFrame extends JFrame implements ActionListener {
         englishVoca.setBounds(25, 10+(25+10)*8, 200, 25);
         englishVoca.addActionListener(this);
         add(englishVoca);
+        soundMerger.setBounds(25, 10+(25+10)*9, 200, 25);
+        soundMerger.addActionListener(this);
+        add(soundMerger);
 
 
         /*fighterJet.setBounds(500-200-25, 10, 200, 25);
@@ -146,15 +154,26 @@ public class MainFrame extends JFrame implements ActionListener {
         }else if(e.getSource() == planes){
             new PlanesExercise();
         }else if(e.getSource() == specil){
-            new SPECILExercise();
+            new SECPILExercise();
         }else if(e.getSource() == culture){
             new CultureExercise();
         }else if(e.getSource() == specilAudio){
-            new SPECILAudioExercise();
+            new SECPILAudioExercise();
         }else if(e.getSource() == englishVoca){
             new EnglishVocabularyExercise(false);
         }else if(e.getSource() == englishVocaReversed){
             new EnglishVocabularyExercise(true);
+        }else if(e.getSource() == soundMerger){
+            ExecutorService executor = Executors.newSingleThreadExecutor();
+            executor.submit(() -> {
+                try {
+                    new SoundMerger();
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
+            });
+            executor.shutdown();
+            JOptionPane.showMessageDialog(this, "Création de 100 sons SECPIL en cours...");
         }
     }
 }

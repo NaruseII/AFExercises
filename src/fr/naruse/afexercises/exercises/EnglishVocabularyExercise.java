@@ -16,7 +16,9 @@ public class EnglishVocabularyExercise extends AbstractExercise {
             "abroad",
             "buoy",
             "strike",
-            "strick"
+            "strick",
+            "rent",
+            "profitable"
     };
     private String[] definitions = new String[]{
             "allumettes",
@@ -27,7 +29,9 @@ public class EnglishVocabularyExercise extends AbstractExercise {
             "partir à l'étranger",
             "bouée",
             "grève",
-            "frapper"
+            "frapper",
+            "louer",
+            "rentable"
     };
 
     private int currentQuestion = 0;
