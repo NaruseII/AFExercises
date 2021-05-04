@@ -49,12 +49,6 @@ public class MainFrame extends JFrame implements ActionListener {
         multiplications.setBounds(25, 10+(25+10)*2, 200, 25);
         multiplications.addActionListener(this);
         add(multiplications);
-        /*enigmas.setBounds(25, 10+(25+10)*3, 200, 25);
-        enigmas.addActionListener(this);
-        add(enigmas);
-        transportAircraft.setBounds(25, 10+(25+10)*4, 200, 25);
-        transportAircraft.addActionListener(this);
-        add(transportAircraft);*/
         grades2.setBounds(25, 10+(25+10)*3, 200, 25);
         grades2.addActionListener(this);
         add(grades2);
@@ -78,9 +72,6 @@ public class MainFrame extends JFrame implements ActionListener {
         add(soundMerger);
 
 
-        /*fighterJet.setBounds(500-200-25, 10, 200, 25);
-        fighterJet.addActionListener(this);
-        add(fighterJet);*/
         grades.setBounds(500-200-25, 10, 200, 25);
         grades.addActionListener(this);
         add(grades);
@@ -109,7 +100,7 @@ public class MainFrame extends JFrame implements ActionListener {
         englishVocaReversed.addActionListener(this);
         add(englishVocaReversed);
 
-        info.setBounds(500-150-20, getHeight()-50, 150, 15);
+        info.setBounds(500-150-20, getHeight()-55, 150, 15);
         info.addActionListener(this);
         add(info);
 
@@ -162,13 +153,18 @@ public class MainFrame extends JFrame implements ActionListener {
         }else if(e.getSource() == englishVocaReversed){
             new EnglishVocabularyExercise(true);
         }else if(e.getSource() == soundMerger){
-            JOptionPane.showMessageDialog(this, "La création de 100 sons SECPIL peut prendre quelques secondes. Cliquez sur 'Ok' pour lancer la création.");
-            try {
-                new SoundMerger();
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
 
+            int interval;
+            int count;
+            try{
+                count = Integer.valueOf(JOptionPane.showInputDialog(this, "Combien de sons SECPIL voulez-vous générer ?"));
+                interval = Integer.valueOf(JOptionPane.showInputDialog(this, "La création de "+count+" sons SECPIL peut prendre quelques secondes. Cliquez sur 'Ok' pour lancer la création.\nQuelle intervalle de temps voulez-vous entre chaque nombre ?"));
+            }catch (Exception ee){
+                JOptionPane.showMessageDialog(this, "Erreur. Ce n'est pas un nombre correct.");
+                setVisible(true);
+                return;
+            }
+            new SoundMerger(interval, count);
         }
     }
 }
